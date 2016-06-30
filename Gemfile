@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
+gem 'devise'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use CoffeeScript for .coffee assets and views
@@ -27,13 +28,23 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+ # Call 'byebug' anywhere in the cod
+ gem 'byebug'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+ # Access an IRB console on exceptio
+ gem 'rspec-rails', '~> 3.0'
+ gem 'rspec-core', '~> 3.0'
+ gem 'pry'
+ gem 'pry-byebug'
+ gem 'factory_girl_rails'
+ gem 'guard-rspec'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+ # Spring speeds up development by k
+ gem 'spring'
 end
 
+group :test do
+  gem 'webmock'
+  gem 'database_cleaner'
+  gem 'faker'
+end
