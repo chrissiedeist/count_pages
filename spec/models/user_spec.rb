@@ -17,4 +17,41 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
     expect(user.email).to eq("chrissie3@gmail.com")
   end
+
+  it "has many read_books" do
+    user = FactoryGirl.create(:user) 
+
+    expect(user.read_books.count).to eq(0)
+  end
+
+  it "can read a book" do
+    user = FactoryGirl.create(:user) 
+    book = FactoryGirl.create(
+      :book,
+      :pages => 100
+    )
+
+    user.read(book)
+
+    expect(user.read_books.count).to eq(1)
+  end
+
+  describe "read_pages" do
+    it "is initially 0" do
+      user = FactoryGirl.create(:user) 
+
+      expect(user.read_pages).to eq(0)
+    end
+
+    it "equals the sum of all paged counts of read_books" do
+      user = FactoryGirl.create(:user) 
+      read_book = ReadBook.create(
+       :page_count => 100,
+       :user_id => user.id,
+       :book_id => 1
+      )
+  
+      expect(user.read_pages).to eq(100)
+    end
+  end
 end
