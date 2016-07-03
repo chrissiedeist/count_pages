@@ -67,6 +67,28 @@ RSpec.describe BooksController, type: :controller do
     end
   end
 
+  describe "GET #read" do
+    login_user
+    before(:each) do
+      request.env['HTTP_REFERER'] = root_url
+    end
+
+    it "creates a read_book entry for current user" do
+      book = FactoryGirl.create(:book)
+
+      expect do
+        get :read, {:id => book.id }
+      end.to change{ ReadBook.count }.by(1)
+    end
+
+    it "redirects to the index page" do
+      book = FactoryGirl.create(:book)
+      get :read, {:id => book.id }
+      
+      expect(response).to redirect_to :back
+    end
+  end
+
   describe "POST #create" do
   login_user
     context "with valid params" do

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :books do
-    resource :users_books
+    member do
+      get 'read'
+    end
   end
 
   devise_for :users
