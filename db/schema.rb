@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20160702021556) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "books_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "book_id", null: false
+  create_table "read_books", id: false, force: :cascade do |t|
+    t.integer "book_id",    null: false
+    t.integer "user_id",    null: false
+    t.integer "page_count"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,11 +45,5 @@ ActiveRecord::Schema.define(version: 20160702021556) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "users_books", id: false, force: :cascade do |t|
-    t.integer "book_id",    null: false
-    t.integer "user_id",    null: false
-    t.integer "page_count"
-  end
 
 end
