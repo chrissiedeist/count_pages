@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   end
 
   def read_pages
-    self.read_books.sum(:page_count)
+    self.read_books.sum(:num_pages)
   end
 end

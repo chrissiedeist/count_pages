@@ -5,7 +5,7 @@ RSpec.describe "books/show", type: :view do
     @book = assign(:book, Book.create!(
       :title => "Title",
       :isbn => "Isbn",
-      :pages => 1
+      :num_pages => 1
     ))
   end
 

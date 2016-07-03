@@ -6,12 +6,12 @@ RSpec.describe "books/index", type: :view do
       Book.create!(
         :title => "Title",
         :isbn => "Isbn",
-        :pages => 1
+        :num_pages => 1
       ),
       Book.create!(
         :title => "Title",
         :isbn => "Isbn",
-        :pages => 1
+        :num_pages => 1
       )
     ])
   end

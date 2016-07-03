@@ -5,7 +5,7 @@ RSpec.describe "books/new", type: :view do
     assign(:book, Book.new(
       :title => "MyString",
       :isbn => "MyString",
-      :pages => 1
+      :num_pages => 1
     ))
   end
 
@@ -18,7 +18,7 @@ RSpec.describe "books/new", type: :view do
 
       assert_select "input#book_isbn[name=?]", "book[isbn]"
 
-      assert_select "input#book_pages[name=?]", "book[pages]"
+      assert_select "input#book_num_pages[name=?]", "book[num_pages]"
     end
   end
 end

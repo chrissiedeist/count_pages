@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
     user = FactoryGirl.create(:user) 
     book = FactoryGirl.create(
       :book,
-      :pages => 100
+      :num_pages => 100
     )
 
     user.read(book)
@@ -45,8 +45,8 @@ RSpec.describe User, type: :model do
 
     it "equals the sum of all paged counts of read_books" do
       user = FactoryGirl.create(:user) 
-      read_book = ReadBook.create(
-       :page_count => 100,
+      ReadBook.create(
+       :num_pages => 100,
        :user_id => user.id,
        :book_id => 1
       )
