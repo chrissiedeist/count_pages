@@ -1,5 +1,15 @@
 <h1>Home</h1>
 
 <% @users.each do |user| %>
-  <%= user %>
+  <%= user.email %>
+  <ul>
+  <% user.books.each do |book| %>
+    <li>
+    <%= book.title %>
+    </li>
+  <% end %>
+  <p>Total pages: <%= user.read_pages %></p>
+</ul>
 <% end %>
+
+<%= link_to 'All books', books_path %>
