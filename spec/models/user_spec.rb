@@ -7,15 +7,15 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  it "has an email" do
-    user = FactoryGirl.create(
-      :user,
-      :email => "chrissie3@gmail.com",
-      :password => "abcd1234",
-    )
+  describe "validations" do
+    it "is invalid without an email" do
+      user = FactoryGirl.build(
+        :user,
+        :email => nil,
+      )
 
-    expect(user).to be_valid
-    expect(user.email).to eq("chrissie3@gmail.com")
+      expect(user).to be_invalid
+    end
   end
 
   describe "associations" do

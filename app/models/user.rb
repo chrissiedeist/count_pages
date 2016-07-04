@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :read_books
   has_many :books, :through => :read_books
 
+#  validates :name, :presence => true
+
   def read(book)
     self.read_books.create(
       :num_pages => book.num_pages,
