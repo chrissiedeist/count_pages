@@ -18,22 +18,33 @@ RSpec.describe User, type: :model do
     expect(user.email).to eq("chrissie3@gmail.com")
   end
 
-  it "has many read_books" do
-    user = FactoryGirl.create(:user) 
+  describe "associations" do
+    it "initially has no read_books" do
+      user = FactoryGirl.create(:user) 
 
-    expect(user.read_books.count).to eq(0)
+      expect(user.read_books.count).to eq(0)
+    end
+
+    it "initially has no books" do
+      user = FactoryGirl.create(:user) 
+
+      expect(user.books.count).to eq(0)
+    end
   end
 
-  it "can read a book" do
-    user = FactoryGirl.create(:user) 
-    book = FactoryGirl.create(
-      :book,
-      :num_pages => 100
-    )
+  describe "read" do
+    it "creates a read_book with the given book id" do
+      user = FactoryGirl.create(:user) 
+      book = FactoryGirl.create(
+        :book,
+        :num_pages => 100
+      )
 
-    user.read(book)
+      user.read(book)
 
-    expect(user.read_books.count).to eq(1)
+      expect(user.read_books.count).to eq(1)
+      expect(user.read_books.first.num_pages).to eq(100)
+    end
   end
 
   describe "read_pages" do
