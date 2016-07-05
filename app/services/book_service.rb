@@ -1,3 +1,5 @@
+require 'net/http'
+
 class BookService 
   def self.build(book_params)
     Book.new(
@@ -8,8 +10,12 @@ class BookService
   end
 
   def self._get_num_pages(isbn)
-    # fetch based on isbn
-    # https://www.googleapis.com/books/v1/volumes?q=isbn:9780664236588
+    # uri = URI('https://www.googleapis.com/books/v1/volumes')
+    # params = { :isbn=> isbn}
+    # uri.query = URI.encode_www_form(params)
+    #
+    # res = Net::HTTP.get_response(uri)
+    #puts res.body if res.is_a?(Net::HTTPSuccess)
     100
   end
 end
