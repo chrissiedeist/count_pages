@@ -1,15 +1,19 @@
-<h1>Home</h1>
+<h1>Page counts</h1>
+
+<h3><%= link_to 'See all books', books_path %></h3>
 
 <% @users.each do |user| %>
   <%= user.email %>
+
   <ul>
   <% user.books.each do |book| %>
     <li>
     <%= book.title %>
+    (<%= book.num_pages%> pages)
     </li>
   <% end %>
   <p>Total pages: <%= user.read_pages %></p>
-</ul>
+  </ul>
+
 <% end %>
 
-<%= link_to 'All books', books_path %>

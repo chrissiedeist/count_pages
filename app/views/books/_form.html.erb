@@ -1,3 +1,9 @@
+<p>
+    <label for="txtBookSearch">Search for a book:</label>
+    <input id="txtBookSearch" type="text">
+</p>
+<div id="divDescription"></div>
+
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">
