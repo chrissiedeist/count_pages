@@ -44,14 +44,14 @@ RSpec.describe User, type: :model do
       expect(user.has_read?(book)).to be_truthy
     end
 
-    it "is falseif the user has not read the book" do
+    it "is false if the user has not read the book" do
       user = FactoryGirl.create(:user) 
       book = FactoryGirl.create(
         :book,
         :num_pages => 100
       )
 
-      expect(user.has_read?(book)).to be_truthy
+      expect(user.has_read?(book)).to be_falsey
     end
   end
 

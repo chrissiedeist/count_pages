@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def has_read?(book)
-    self.books.where(:id => book.id)
+    self.books.where(:id => book.id).present?
   end
 
   def read_pages
