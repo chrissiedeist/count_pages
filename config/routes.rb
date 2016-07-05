@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :books do
     member do
       get 'read'
+      get 'unread'
     end
   end
 

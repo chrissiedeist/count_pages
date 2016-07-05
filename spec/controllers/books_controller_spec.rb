@@ -42,6 +42,45 @@ RSpec.describe BooksController, type: :controller do
     end
   end
 
+  describe "GET #unread" do
+    before(:each) do
+      request.env['HTTP_REFERER'] = root_url
+    end
+
+    it "removes a read_book entry for current user" do
+      book = FactoryGirl.create(:book)
+      subject.current_user.read(book)
+
+      expect do
+        get :unread, {:id => book.id }
+      end.to change{ subject.current_user.books.count }.by(-1)
+    end
+
+    it "does not blow up if read_book does not exist" do
+      book = FactoryGirl.create(:book)
+
+      expect do
+        get :unread, {:id => book.id }
+      end.to_not raise_error
+    end
+
+    it "does not remove the actual book" do
+      book = FactoryGirl.create(:book)
+      subject.current_user.read(book)
+
+      expect do
+        get :unread, {:id => book.id }
+      end.to_not change{ Book.count }
+    end
+
+    it "redirects to the page the request came from" do
+      book = FactoryGirl.create(:book)
+      get :read, {:id => book.id }
+      
+      expect(response).to redirect_to :back
+    end
+  end
+
   describe "GET #read" do
     before(:each) do
       request.env['HTTP_REFERER'] = root_url
@@ -55,7 +94,7 @@ RSpec.describe BooksController, type: :controller do
       end.to change{ ReadBook.count }.by(1)
     end
 
-    it "redirects to the index page" do
+    it "redirects to the page the request came from" do
       book = FactoryGirl.create(:book)
       get :read, {:id => book.id }
       

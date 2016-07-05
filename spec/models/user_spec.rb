@@ -55,6 +55,23 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "unread" do
+    it "removes a read_book with the given book id" do
+      user = FactoryGirl.create(:user) 
+      book = FactoryGirl.create(
+        :book,
+        :num_pages => 100
+      )
+
+      user.read(book)
+
+      expect(user.read_books.count).to eq(1)
+
+      user.unread(book)
+      expect(user.read_books.count).to eq(0)
+    end
+  end
+
   describe "read" do
     it "creates a read_book with the given book id" do
       user = FactoryGirl.create(:user) 

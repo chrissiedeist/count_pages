@@ -16,6 +16,13 @@ class User < ActiveRecord::Base
     )
   end
 
+  def unread(book)
+    ReadBook.delete_all(
+      :book_id => book.id, 
+      :user_id => self.id,
+    )
+  end
+
   def has_read?(book)
     self.books.where(:id => book.id).present?
   end

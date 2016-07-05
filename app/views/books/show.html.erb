@@ -16,7 +16,9 @@
 <%= link_to 'Edit', edit_book_path(@book) %>
 <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<% unless current_user.has_read?(@book) %>
+<% if current_user.has_read?(@book) %>
+  <p><%= link_to 'Mark as Unread', unread_book_path(@book)  %></p>
+<% else %>
   <p><%= link_to 'Mark as Read', read_book_path(@book)  %></p>
 <% end %>
 

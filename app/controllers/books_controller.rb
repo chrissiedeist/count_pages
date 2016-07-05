@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :read]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :read, :unread]
 
   def index
     @books = Book.all
@@ -14,6 +14,12 @@ class BooksController < ApplicationController
   end
 
   def edit
+  end
+
+  def unread
+    current_user.unread(@book)
+
+    redirect_to :back
   end
 
   def read
