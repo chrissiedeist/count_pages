@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     )
   end
 
+  def has_read?(book)
+    self.books.where(:id => book.id)
+  end
+
   def read_pages
     self.read_books.sum(:num_pages)
   end

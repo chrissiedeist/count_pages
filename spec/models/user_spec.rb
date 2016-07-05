@@ -32,6 +32,29 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "has_read?" do
+    it "is true if the user has read the book" do
+      user = FactoryGirl.create(:user) 
+      book = FactoryGirl.create(
+        :book,
+        :num_pages => 100
+      )
+
+      user.read(book)
+      expect(user.has_read?(book)).to be_truthy
+    end
+
+    it "is falseif the user has not read the book" do
+      user = FactoryGirl.create(:user) 
+      book = FactoryGirl.create(
+        :book,
+        :num_pages => 100
+      )
+
+      expect(user.has_read?(book)).to be_truthy
+    end
+  end
+
   describe "read" do
     it "creates a read_book with the given book id" do
       user = FactoryGirl.create(:user) 
