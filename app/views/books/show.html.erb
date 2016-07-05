@@ -1,19 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
-
-<p>
-  <strong>Isbn:</strong>
-  <%= @book.isbn %>
-</p>
+<h2><%= @book.title %></h2>
 
 <p>
   <strong>Pages:</strong>
   <%= @book.num_pages %>
 </p>
+<p><%= link_to 'Edit', edit_book_path(@book) %></p>
+<p><%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<p><%= link_to 'Mark as Read', read_book_path(@book)  %></p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'All books', books_path %>

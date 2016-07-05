@@ -3,7 +3,7 @@ class BookService
     Book.new(
       :title => book_params[:title],
       :isbn => book_params[:isbn],
-      :num_pages => _get_num_pages(book_params[:isbn]),
+      :num_pages => book_params[:num_pages] || _get_num_pages(book_params[:isbn]),
     )
   end
 

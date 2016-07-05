@@ -1,7 +1,7 @@
 <h1>Add a Book</h1>
 
+<h3>Search for a book to create:</h3>
 <p>
-    <label for="txtBookSearch">Search for a book:</label>
     <input id="txtBookSearch" type="text">
 </p>
 <div id="divDescription"></div>
@@ -29,5 +29,8 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<h3>Or enter book info manually:</h3>
+<%= render 'form' %>
 
 <%= link_to 'Back', books_path %>
