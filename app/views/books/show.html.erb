@@ -1,25 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @book.title %></h2>
+<h2><%= @book.title %> (<%= @book.num_pages %> pages)</h2>
+<p>Author: <%= @book.author %></p>
+<p>Num pages: <%= @book.num_pages%></p>
 
 <p>Read by:</p>
 <ul>
 <% @book.users.each do |user| %>
-  <li><%= user.email %></li> 
+  <li><%= user.name %></li> 
 <% end %>
 </ul>
 
-<p>
-  <strong>Pages:</strong>
-  <%= @book.num_pages %>
-</p>
+<% if current_user.has_read?(@book) %>
+<%= link_to 'Mark as Unread', unread_book_path(@book)  %>
+<% else %>
+<%= link_to 'Mark as Read', read_book_path(@book)  %>
+<% end %>
+
 <%= link_to 'Edit', edit_book_path(@book) %>
 <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<% if current_user.has_read?(@book) %>
-  <p><%= link_to 'Mark as Unread', unread_book_path(@book)  %></p>
-<% else %>
-  <p><%= link_to 'Mark as Read', read_book_path(@book)  %></p>
-<% end %>
 
-<%= link_to 'All books', books_path %>
+<p><%= link_to 'All books', books_path %></p>

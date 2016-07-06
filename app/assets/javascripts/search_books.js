@@ -41,6 +41,7 @@ $(document).ready(function () {
 
             $('#book_title').val(ui.item.title);
             $('#book_num_pages').val(ui.item.pageCount);
+            $('#book_author').val(ui.item.author);
 
             if (ui.item.isbn && ui.item.isbn[0].identifier)
             {
