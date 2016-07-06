@@ -23,6 +23,7 @@ $(document).ready(function () {
                                 publishedDate: item.volumeInfo.publishedDate,
                                 image: (item.volumeInfo.imageLinks == null ? "" : item.volumeInfo.imageLinks.thumbnail),
                                 description: item.volumeInfo.description,
+                                pageCount: item.volumeInfo.pageCount,
                             };
                         }
                     }));
@@ -31,12 +32,16 @@ $(document).ready(function () {
         },
         select: function (event, ui) {
             $('#divDescription').empty();
-            $('#book_title').val(ui.item.title);
 
             $('#divDescription').append('<p><b>Title:</b> ' + ui.item.title  + '</p>');
             $('#divDescription').append('<p><b>Author:</b> ' + ui.item.author  + '</p>');
             $('#divDescription').append('<p><b>First published year:</b> ' + ui.item.publishedDate  + '</p>');          
+            $('#divDescription').append('<p><b>Page count:</b> ' + ui.item.pageCount  + '</p>');          
             $('#divDescription').append('<p><b>Description:</b> ' + ui.item.description  + '</p>');
+
+            $('#book_title').val(ui.item.title);
+            $('#book_num_pages').val(ui.item.pageCount);
+
             if (ui.item.isbn && ui.item.isbn[0].identifier)
             {
                 $('#divDescription').append('<P><b>ISBN:</b> ' + ui.item.isbn[0].identifier + '</p>');
