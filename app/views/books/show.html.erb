@@ -7,7 +7,7 @@
 <p>Read by:</p>
 <ul>
 <% @book.users.each do |user| %>
-  <li><%= user.name %></li> 
+<li><%= user.name %> (<%= user.read_date(@book) %>)</li> 
 <% end %>
 </ul>
 

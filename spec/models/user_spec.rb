@@ -105,4 +105,24 @@ RSpec.describe User, type: :model do
       expect(user.read_pages).to eq(100)
     end
   end
+
+  describe "read_date" do
+    it "returns the date that of the associated read_book" do
+      user = FactoryGirl.create(:user) 
+      book = FactoryGirl.create(:book)
+
+      user.read(book)
+
+      expect(user.read_date(book)).to eq(Date.today.strftime("%m/%d/%Y"))
+    end
+
+    it "does not blow up if user has not read the book" do
+      user = FactoryGirl.create(:user) 
+      book = FactoryGirl.create(:book)
+
+      expect do
+        user.read_date(book)
+      end.to_not raise_error
+    end
+  end
 end

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
       :num_pages => book.num_pages,
       :book_id => book.id, 
       :user_id => self.id,
+      :read_date => Date.today,
     )
   end
 
@@ -29,5 +30,10 @@ class User < ActiveRecord::Base
 
   def read_pages
     self.read_books.sum(:num_pages)
+  end
+
+  def read_date(book)
+    read_book = self.read_books.where(:book_id => book.id).first
+    read_book.read_date.strftime("%m/%d/%Y") if read_book
   end
 end
