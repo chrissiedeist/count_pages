@@ -1,0 +1,5 @@
+<%= @user.name %>
+
+<% @user.books.each do |book| %>
+<%= book.title %>, read on <%= @user.read_date(book) %>
+<% end %>
