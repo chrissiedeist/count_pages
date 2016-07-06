@@ -29,7 +29,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = BookService.build(book_params)
+    @book = Book.new(book_params)
 
     respond_to do |format|
       if @book.save
@@ -68,6 +68,6 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :isbn, :num_pages)
+      params.require(:book).permit(:title, :author, :isbn, :num_pages)
     end
 end

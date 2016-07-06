@@ -116,6 +116,23 @@ RSpec.describe BooksController, type: :controller do
         expect(assigns(:book)).to be_persisted
       end
 
+      it "has all given attributes" do
+        post :create, {
+          :book => {
+            :title => "My Title",
+            :author => "My Author",
+            :num_pages => 200,
+            :isbn => 12341234,
+          }
+        }
+
+        book = assigns(:book)
+        expect(book.title).to eq("My Title")
+        expect(book.author).to eq("My Author")
+        expect(book.num_pages).to eq(200)
+        expect(book.isbn).to eq("12341234")
+      end
+
       it "redirects to the created book" do
         post :create, {:book => valid_attributes}
         expect(response).to redirect_to(Book.last)
