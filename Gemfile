@@ -5,8 +5,8 @@ source 'https://rubygems.org'
 gem 'jquery-ui-rails'
 gem 'rails', '4.2.3'
 gem 'devise'
+gem 'pg'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -31,6 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
  # Call 'byebug' anywhere in the cod
  gem 'byebug'
+ gem 'sqlite3'
 
  # Access an IRB console on exceptio
  gem 'rspec-rails', '~> 3.0'
