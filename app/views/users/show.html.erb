@@ -1,5 +1,9 @@
-<%= @user.name %>
+<h1><%= @user.name %></h1>
 
+<ul>
 <% @user.books.each do |book| %>
-<%= book.title %>, read on <%= @user.read_date(book) %>
+<li>
+<%= link_to book.title, book_path(book) %> (<%= @user.read_date(book) %>)
+</li>
 <% end %>
+</ul>

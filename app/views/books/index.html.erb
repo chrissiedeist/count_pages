@@ -7,6 +7,11 @@
     <% @books.each do |book| %>
       <tr>
         <td><%= link_to book.title, book %></td>
+        <% if current_user.has_read?(book) %>
+        <td><%= link_to 'Mark as Unread', unread_book_path(book) %></td>
+        <% else %>
+        <td><%= link_to 'Mark as Read', read_book_path(book)  %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
